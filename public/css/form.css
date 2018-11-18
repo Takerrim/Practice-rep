@@ -1,0 +1,21 @@
+.main-form {
+    width: 250px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    margin-bottom: 5px;
+    padding: 5px 0;
+}
+
+.submit {
+    margin-top: 5px;
+    padding: 5px 0;
+    font-size: 1.2em;
+}

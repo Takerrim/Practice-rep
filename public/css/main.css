@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-header {
+    height: 80px;
+    background-color: rgb(9, 71, 187);
+    color: #000000;
+}
+
+ul {
+    width: 17%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+li {
+    list-style: none;
+} 
+
+.main-ref {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.main-ref:active,
+.main-ref:hover {
+    color: yellow;
+}
+
+.active {
+    color: yellow;
+}

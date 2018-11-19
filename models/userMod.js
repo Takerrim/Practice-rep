@@ -37,4 +37,41 @@ module.exports = class User {
     static fetchAll (callback) {
         getAllUsers(callback);
     }
+
+    static deleteUsers (id) {
+        getAllUsers(users => { // users from file
+            const user = users.filter(person => { // copy array without user with specified id 
+                return person.id  !== id;
+            })
+            fs.writeFile(p, JSON.stringify(user), err => { // save this array
+                if(err) {
+                    console.log(err);
+                }
+            })
+        })
+    }
+
+    //--- never mind code below this comment , it's mockup for put request
+
+    // static updateUser (id,userName) {
+    //     getAllUsers(users => {
+    //         const user = users.find(person => {
+    //             return person.id === id;
+    //         })
+    //         if(user) {
+    //             const updatedUser = {idUser:user.id ,name: user.name};
+    //             updatedUser.idUser = id;
+    //             updatedUser.name = userName;
+    //             fs.writeFile(p,JSON.stringify(updatedUser),err => {
+    //                 if(err){
+    //                     console.log(err);
+    //                 }
+    //             })
+                
+    //         } else {
+    //             throw new Error(`Ups the specified user doesn't exist`);
+    //         }
+    //     })
+    // }
 }
+

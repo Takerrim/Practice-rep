@@ -56,7 +56,7 @@ exports.addUser = (req,res) => {
 }
 
 exports.postUser = (req,res) => {
-    const id = +req.body.idUser;
+    const id = Date.now();
     const name = req.body.nameUser;
     const user = new User(id,name);
     user.save(); // save new user in users.json
@@ -68,3 +68,16 @@ exports.getAddUser = (req,res) => {
         res.render('users',{results: user}) // add users in view
     })
 }
+
+exports.deleteUser = (req,res) => {
+    const id = +req.params.id;// take id in url (req params)
+    User.deleteUsers(id); // delete user
+    res.redirect('/users');
+}
+
+// exports.updateUser = (req,res) => {
+//     const id = +req.params.id;
+//     const name = req.body.name;
+//     User.updateUser(id,name);
+//     res.redirect('/users');
+// }

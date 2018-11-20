@@ -1,8 +1,16 @@
 include includes/main-lay.pug
 
+block styles
+    link(rel="stylesheet", href="/css/users.css")
+
 block content
     each user in results
         if have
-            p #{user.id}: #{user.name}
+            .user-block
+                p.user id - #{user.id}: #{user.name}
+                form.user-form(action="/users")
+                    input(type="text" name="nameUser" placeholder="type to change the name")
+                    button.btn-approve(type="submit") Change name
+                    button.btn-delete(type="submit") Delete
         else 
             p #{user}

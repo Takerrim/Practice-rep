@@ -75,9 +75,9 @@ exports.deleteUser = (req,res) => {
     res.redirect('/users');
 }
 
-// exports.updateUser = (req,res) => {
-//     const id = +req.params.id;
-//     const name = req.body.name;
-//     User.updateUser(id,name);
-//     res.redirect('/users');
-// }
+exports.updateUser = (req,res) => {
+    const id = +req.params.id;
+    const name = req.body.name;
+    User.updateUser(id,name);
+    res.redirect('/users');
+}

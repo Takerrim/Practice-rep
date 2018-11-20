@@ -7,7 +7,7 @@ router.get('/users',userController.getUsers);
 router.get('/users/:id',userController.getUserById);
 router.get('/users', userController.getAddUser)
 // update user
-//router.put('/users/:id', userController.updateUser);
+router.put('/users/:id', userController.updateUser);
 // delete user
 router.delete('/users/:id', userController.deleteUser);
 

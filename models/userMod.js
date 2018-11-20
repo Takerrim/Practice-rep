@@ -51,27 +51,30 @@ module.exports = class User {
         })
     }
 
-    //--- never mind code below this comment , it's mockup for put request
 
-    // static updateUser (id,userName) {
-    //     getAllUsers(users => {
-    //         const user = users.find(person => {
-    //             return person.id === id;
-    //         })
-    //         if(user) {
-    //             const updatedUser = {idUser:user.id ,name: user.name};
-    //             updatedUser.idUser = id;
-    //             updatedUser.name = userName;
-    //             fs.writeFile(p,JSON.stringify(updatedUser),err => {
-    //                 if(err){
-    //                     console.log(err);
-    //                 }
-    //             })
+    static updateUser (id,userName) {
+        getAllUsers(users => {
+            const user = users.find(person => {
+                return person.id === id;
+            })
+            if(user) {
+                const userIndex = users.findIndex(index => { // find user by index
+                    return index.id === id // compare with input id
+                })
+                const updatedUser = {id:user.id ,name: user.name}; // take user properties
+                updatedUser.id = id; // take id from req.params.id
+                updatedUser.name = userName; //  replace on typed value from req.body.userName
+                users.splice(userIndex,1,updatedUser); // replace old value user on new value user (1: by userIndex we find user 2: remove one user 3: and add  new userValue)
+                fs.writeFile(p,JSON.stringify(users),err => { // write it in file
+                    if(err){
+                        console.log(err);
+                    }
+                })
                 
-    //         } else {
-    //             throw new Error(`Ups the specified user doesn't exist`);
-    //         }
-    //     })
-    // }
+            } else {
+                throw new Error(`Ups the specified user doesn't exist`);
+            }
+        })
+    }
 }
 

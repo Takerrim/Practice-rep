@@ -1,0 +1,33 @@
+<%- include('./includes/head.ejs') %>
+<link rel="stylesheet" href="/css/users.css">
+</head>
+<body>
+    <%- include('./includes/navigation.ejs') %>
+
+    <% for (let user of results) { %>
+        <% if(have) { %>
+            <div class="user-block">
+                <p class="user">
+                     <span class="character">Name </span> <span>-</span><%= user.name%>;
+                       <span class="character">Age </span> <span>-</span><%= user.age%>;
+                    <span class="character">Email </span> <span>-</span><%= user.email %>;
+                </p>
+                <form action="/users/update-user" method="POST" class="change-form">
+                    <input type="text" name="nameUser" placeholder="type to change the name">
+                    <input type="hidden" name="updateId" value="<%= user._id %>">
+                    <button type="submit" class="btn-approve"> Change name</button>
+                </form>
+                <form action="/users" method="POST" class="delete-form">
+                    <input type="hidden" name="userId" value="<%= user._id %>">
+                    <button type="submit" class="btn-delete"> Delete</button>
+                </form>
+            </div>
+        <% } else {%>
+            <p><%= user %></p>
+   <% }%>
+<% }%>
+<body>
+    
+<html>
+
+

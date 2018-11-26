@@ -10,10 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "mongodb": "^3.1.10",
     "pug": "^2.0.3"
   },
   "devDependencies": {
+    "morgan": "^1.9.1",
     "nodemon": "^1.18.6"
   }
 }

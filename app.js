@@ -1,19 +1,19 @@
 const express = require('express')
 const app = express()
-const bodyParser = require('body-parser')
+//const bodyParser = require('body-parser')
 const path = require('path')
 const userRoutes = require('./routes/user')
-const morgan = require('morgan')
-
-const mongoConnect = require('./api/database').mongoConnect
+const logger = require('morgan')
+const mongoose = require('mongoose')
+//const mongoConnect = require('./api/database').mongoConnect
 //const User = require('./models/userMod');
 
 app.set('view engine', 'ejs')
 app.set('views','views')
 
-app.use(morgan('dev'))
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(logger('dev'))
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/',userRoutes)
@@ -31,7 +31,9 @@ app.get('/', userRoutes)
 //     next();
 // })
 
-
-mongoConnect(()=>{
+mongoose.connect('mongodb+srv://Taker:morgott22@clustersecond-erq9e.mongodb.net/user?retryWrites=true')
+.then(result => {
+    console.log('connected')
     app.listen(process.env.PORT || 3000)
 })
+

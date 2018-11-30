@@ -9,7 +9,6 @@ exports.getView = (req,res) => {
     })
 }
 
-
 exports.addUser = (req,res) => {
     res.render('addUser', {
         pageTitle: 'Add User',
@@ -21,7 +20,11 @@ exports.postUser = (req,res) => {
     const name = req.body.nameUser
     const age = req.body.ageUser
     const email = req.body.emailUser
-    const user = new User(name,age,email, null)
+    const user = new User({
+        name: name,
+        age: age, 
+        email: email}
+        )
     user.save()
     .then(()=>{
         res.redirect('/users')
@@ -31,7 +34,7 @@ exports.postUser = (req,res) => {
 
 exports.getAddUsers = (req,res) => {
     const have = true
-    User.findAll()
+    User.find()
     .then(users => {
         res.render('users',{
             results: users,
@@ -45,7 +48,7 @@ exports.getAddUsers = (req,res) => {
 
 exports.deleteUser = (req,res) => {
     const _id = req.body.userId;
-    User.deleteUser(_id)
+    User.findByIdAndDelete(_id)
     .then(()=>{
         res.redirect('/users')
     })
@@ -53,10 +56,14 @@ exports.deleteUser = (req,res) => {
 }
 
 exports.updateUser = (req,res) => {
-    const id = req.body.updateId
-    const name = req.body.nameUser
-    User.updateUser(id,name)
-    .then(() => {
+    const _id = req.body.updateId
+    const updatedName = req.body.nameUser
+    User.findById(_id)
+    .then(user => {
+         user.name = updatedName
+         return user.save()
+    })
+    .then(()=> {
         res.redirect('/users')
     })
     .catch(err => console.log(err))

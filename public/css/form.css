@@ -18,4 +18,13 @@ input {
     margin-top: 5px;
     padding: 5px 0;
     font-size: 1.2em;
+    border: 1px solid #000000;
+}
+.submit:hover {
+    color: rgb(17, 173, 101);
+    border: 1px solid rgb(17, 173, 101);
+}
+
+.submit-product {
+    margin-top: 15px;
 }

@@ -2,20 +2,45 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-    name:{
-        type: String,
-        required: true
-    },
-    age:{
-        type: Number,
-        required: true
-    },
     email: {
         type: String,
         required: true,
         unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    cart: {
+        items:[{
+           product: {
+               type: Schema.Types.ObjectId,
+               required:true,
+               ref: 'Product'
+           }
+        }]
     }
 }) 
+
+userSchema.methods.addToCart = function (product) {
+  const cartItem = this.cart.items.find(item => { // find product by id
+      return item.product.toString() === product._id.toString()
+  })
+    const updatedCartItems = [...this.cart.items] // copy items
+    
+  if(cartItem) return; // if there is the product in user cart items , don't add it
+
+  if(this.cart.items.length >= 0){ // if there are products in user cart items , add product in cart items array
+      updatedCartItems.push({
+          product: product
+      })
+    }
+  const updatedCart = { // update cart items 
+    items: updatedCartItems
+ }
+    this.cart = updatedCart // save items in cart
+    return this.save() // save  user with update cart items
+}
 
 const User = mongoose.model('User', userSchema)
 

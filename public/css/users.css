@@ -3,6 +3,8 @@
     margin-bottom: 3px;
     display: flex;
     height: 35px;
+    display: flex;
+    align-items: center;
 }
 .user {
     color: rgb(25, 0, 255);
@@ -28,11 +30,12 @@ input {
 button {
     color: #ffffff;
     height: 27px;
-    font-style: 1.2em;
+    font-size: 1em;
     outline: none;
     border: none;
     padding: 0 10px;
     margin-right: 7px;
+
 }
 
 .btn-approve {
@@ -55,4 +58,14 @@ span {
 
 .character {
     color: green;
+}
+
+.edit-link {
+    margin-right: 10px;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    height: 27px;
+    padding: 0 5px;
+    font-size: 1em;
 }

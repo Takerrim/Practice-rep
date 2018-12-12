@@ -1,7 +1,23 @@
 <header class="main-header">
-    <ul>
-        <li><a href="/users" class="main-ref <%= path=== '/users'? 'active': ''%>">Users</a></li>
-        <li><a href="/add-user" class="main-ref <%= path=== '/add-user'? 'active': ''%>">Add User</a></li>
-        <li><a href="/" class="main-ref <%= path=== '/' ? 'active': ''%>">Main page</a></li>
+    <ul class="left-nav-block">
+        <li><a href="/" class="main-ref <%= path === '/' ? 'active': ''%>">Main page</a></li>
+        <!-- <li><a href="/users" class="main-ref <%= path === '/users'? 'active': ''%>">Users</a></li> -->
+        <li><a href="/products" class="main-ref <%= path === '/products'? 'active': ''%>">Products</a></li>
+        <% if(isAuthenticated) { %>
+        <!-- <li><a href="/add-user" class="main-ref <%= path === '/add-user'? 'active': ''%>">Add User</a></li> -->
+        <li><a href="/add-product" class="main-ref <%= path === '/add-product' ? 'active': ''%>">Add product</a></li>
+        <% } %>
+    </ul>
+    <% if(!isAuthenticated) { %>
+    <ul class="log-block">
+        <li><a href="/login" class="main-ref <%= path=== '/login' ? 'active': ''%>">Login</a></li>
+        <li><a href="/signup" class="main-ref <%= path=== '/signup' ? 'active': ''%>">Sign Up</a></li>
+    <% } else { %>
+        <li class="main-ref">
+            <form action="/logout" method="POST">
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </li>
+        <% } %>
     </ul>
 </header>
